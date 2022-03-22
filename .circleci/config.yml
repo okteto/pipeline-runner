@@ -3,15 +3,11 @@ version: 2.1
 jobs:
   release:
     docker:
-      - image: okteto/golang-ci:1.17.5
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
+      - image: cimg/base:latest
     steps:
       - checkout
       - setup_remote_docker:
           version: 20.10.6
-      - run: *okteto-login
       - run:
           name: Build and Push Pipeline Installer Image
           command: |
