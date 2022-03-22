@@ -1,12 +1,5 @@
 version: 2.1
 
-aliases:
-  - &okteto-login |
-    curl https://get.okteto.com -sSfL | sh
-    mkdir -p $HOME/.okteto
-    touch $HOME/.okteto/.noanalytics
-    okteto login ${OKTETO_URL} --token ${OKTETO_TOKEN}
-
 jobs:
   release:
     docker:
@@ -22,16 +15,15 @@ jobs:
       - run:
           name: Build and Push Pipeline Installer Image
           command: |
-            export INSTALLER_BASE_TAG=${CIRCLE_TAG}
+            docker build -t okteto/installer-base:${CIRCLE_TAG} .
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            make push
+            docker push okteto/installer-base:${CIRCLE_TAG}
 workflows:
   version: 2
   release:
     jobs:
       - release:
           context:
-            - Okteto-Staging
             - dockerhub
           filters:
             branches:
