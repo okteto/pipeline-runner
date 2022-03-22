@@ -1,0 +1,1 @@
+# pipeline-installer-base-image
