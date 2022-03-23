@@ -11,7 +11,7 @@ jobs:
           version: 20.10.6
       - run: 
           name: Build image
-          command: docker build -t okteto/installer-base:${CIRCLE_TAG} .
+          command: docker build -t okteto/installer-base:test .
   release:
     docker:
       - image: cimg/base:2022.03-20.04
