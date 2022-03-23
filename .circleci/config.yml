@@ -1,6 +1,16 @@
 version: 2.1
 
 jobs:
+  test:
+    docker:
+      - image: cimg/base:latest
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.6
+      - run: 
+          name: Build image
+          command: docker build -t okteto/installer-base:${CIRCLE_TAG} .
   release:
     docker:
       - image: cimg/base:latest
@@ -16,6 +26,9 @@ jobs:
             docker push okteto/installer-base:${CIRCLE_TAG}
 workflows:
   version: 2
+  test:
+    jobs:
+      - test
   release:
     jobs:
       - release:
@@ -23,7 +36,7 @@ workflows:
             - dockerhub
           filters:
             branches:
-              ignore: /.*/
+              only: main
             tags:
               only:
                 - /^\d+\.\d+\.\d+$/
