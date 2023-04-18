@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:experimental
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 COPY --from=cuelang/cue:0.4.0 /usr/bin/cue /usr/local/bin/cue
 COPY --from=mikefarah/yq:4 /usr/bin/yq /usr/local/bin/yq
