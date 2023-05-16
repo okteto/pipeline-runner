@@ -13,9 +13,8 @@ FROM okteto/pipeline-runner:1.0.0
 and configure your custom image in the okteto chart values file like this:
 
 ```
-backend:
-  installer:
-    image: okteto/pipeline-runner:1.0.0
+installer:
+  runner: okteto/pipeline-runner:1.0.0
 ```
 
 replacing `okteto/pipeline-runner:1.0.0` by your own pipeline runner image.
