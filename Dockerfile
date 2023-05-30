@@ -1,21 +1,19 @@
-# syntax = docker/dockerfile:experimental
-FROM debian:bullseye-slim
+FROM alpine:3.18.0
 
-COPY --from=cuelang/cue:0.4.0 /usr/bin/cue /usr/local/bin/cue
-COPY --from=mikefarah/yq:4 /usr/bin/yq /usr/local/bin/yq
+RUN apk --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing add cue-cli
 
-RUN apt update && \
-    apt -y install \
-        sudo \
-        apt-transport-https \
-        ca-certificates \
-        gnupg \
-        bash \
-        make \
-        git \
-        openssh-server \
-        curl \
-        gettext-base \
-        wait-for-it \
-        jq \
-        netcat
+RUN apk --no-cache add \
+    yq \
+    sudo \
+    ca-certificates \
+    gnupg \
+    bash \
+    make \
+    git \
+    openssh-server \
+    curl \
+    gettext \
+    jq \
+    netcat-openbsd
+
+RUN curl https://raw.githubusercontent.com/vishnubob/wait-for-it/81b1373f17855a4dc21156cfe1694c31d7d1792e/wait-for-it.sh -o /usr/bin/wait-for-it && chmod +x /usr/bin/wait-for-it
