@@ -4,7 +4,7 @@ FROM debian:bookworm-slim
 COPY --from=cuelang/cue:0.5.0 /usr/bin/cue /usr/local/bin/cue
 COPY --from=mikefarah/yq:4 /usr/bin/yq /usr/local/bin/yq
 
-RUN apt update && apt clean && \
+RUN apt clean && apt update && \
     apt -y install \
         sudo \
         apt-transport-https \
