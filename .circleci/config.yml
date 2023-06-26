@@ -7,8 +7,7 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.6
+      - setup_remote_docker
       - run: 
           name: Build image
           command: docker build -t okteto/pipeline-runner:test .
@@ -18,8 +17,7 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.6
+      - setup_remote_docker
       - run:
           name: Build and Push Pipeline Installer Image
           command: |
@@ -32,8 +30,7 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.6
+      - setup_remote_docker
       - run:
           name: Build and Push Pipeline Installer Image
           command: |
