@@ -19,3 +19,8 @@ RUN apt clean && apt update && \
         wait-for-it \
         jq \
         netcat-traditional
+
+RUN addgroup --gid 1000 runner && \
+    adduser --disabled-login --home /home/runner --ingroup runner --uid 1000 runner
+
+USER 1000
