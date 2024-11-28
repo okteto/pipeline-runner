@@ -15,8 +15,11 @@ jobs:
       - checkout
       - run: *okteto-login
       - run: 
-          name: Build Image
-          command: make build
+          name: Build Rootful Image
+          command: make build-rootful
+      - run: 
+          name: Build Rootless Image
+          command: make build-rootless
   release:
     docker:
       - image: cimg/base:current
@@ -25,8 +28,11 @@ jobs:
       - run: *okteto-login
       - run: *docker-login
       - run:
-          name: Build and Push Image
-          command: make push
+          name: Build and Push Rootful Image
+          command: make push-rootful
+      - run:
+          name: Build and Push Rootless Image
+          command: make push-rootless
 
 workflows:
   version: 2
