@@ -27,5 +27,9 @@ RUN addgroup --gid 1000 runner && \
 
 USER 1000
 
+WORKDIR /okteto/src
+
 # keep basic container image build rootful as before
 FROM base as rootful
+
+WORKDIR /okteto/src
