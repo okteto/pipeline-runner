@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:experimental
-FROM debian:bookworm-slim as base
+FROM debian:bookworm-slim AS base
 
 RUN apt clean && apt update && \
     apt -y install \
