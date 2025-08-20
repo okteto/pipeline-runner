@@ -17,6 +17,11 @@ RUN apt clean && apt update && \
         jq \
         netcat-traditional
 
+RUN git config --global http.timeout 300 && \
+    git config --global http.lowSpeedLimit 1000 && \
+    git config --global http.lowSpeedTime 30 && \
+    git config --global core.sshCommand "ssh -o ConnectTimeout=300 -o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o TCPKeepAlive=yes"
+
 FROM base as rootless
 
 RUN addgroup --gid 1000 runner && \
