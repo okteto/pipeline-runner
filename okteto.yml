@@ -1,0 +1,12 @@
+build:
+  image:
+    context: .
+
+test:
+  trivy:
+    image: aquasec/trivy:latest
+    context: trivy
+    caches:
+      - /root/.cache/trivy
+    commands:
+      - ./scan.sh

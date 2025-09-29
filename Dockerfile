@@ -2,6 +2,7 @@
 FROM debian:bookworm-slim AS base
 
 RUN apt clean && apt update && \
+    apt -y upgrade && \
     apt -y install \
         sudo \
         apt-transport-https \
@@ -15,7 +16,10 @@ RUN apt clean && apt update && \
         gettext-base \
         wait-for-it \
         jq \
-        netcat-traditional
+        netcat-traditional && \
+    rm -f /etc/ssh/ssh_host_* && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN git config --global http.timeout 300 && \
     git config --global http.lowSpeedLimit 1000 && \
