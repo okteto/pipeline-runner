@@ -1,9 +1,9 @@
 # syntax = docker/dockerfile:experimental
-FROM debian:bookworm-slim AS base
+FROM debian:trixie-slim AS base
 
 RUN apt clean && apt update && \
     apt -y upgrade && \
-    apt -y install \
+    apt -y install --no-install-recommends \
         sudo \
         apt-transport-https \
         ca-certificates \
@@ -19,7 +19,7 @@ RUN apt clean && apt update && \
         netcat-traditional && \
     rm -f /etc/ssh/ssh_host_* && \
     apt clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*
 
 RUN git config --global http.timeout 300 && \
     git config --global http.lowSpeedLimit 1000 && \
