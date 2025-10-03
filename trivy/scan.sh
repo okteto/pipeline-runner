@@ -15,7 +15,7 @@ scan_image() {
 }
 
 # Use IMAGE environment variable if provided, otherwise use default image
-DEFAULT_IMAGE="registry.product.okteto.dev/${AGENT_NAMESPACE}/pipeline-runner-image:okteto"
+DEFAULT_IMAGE="registry.product.okteto.dev/${OKTETO_NAMESPACE}/pipeline-runner-image:okteto"
 IMAGE_TO_SCAN="${IMAGE:-$DEFAULT_IMAGE}"
 
 scan_image "$IMAGE_TO_SCAN"
