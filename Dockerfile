@@ -7,7 +7,6 @@ RUN apt clean && apt update && \
         sudo \
         apt-transport-https \
         ca-certificates \
-        gnupg \
         bash \
         make \
         git \
