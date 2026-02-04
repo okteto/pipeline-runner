@@ -18,6 +18,7 @@ RUN apt clean && apt update && \
         jq \
         netcat-traditional && \
     rm -f /etc/ssh/ssh_host_* && \
+    apt -y upgrade gnupg dirmngr gpg gpg-agent gpgconf gpgsm gnupg-l10n openssl libssl3t64 openssl-provider-legacy && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*
 
