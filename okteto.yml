@@ -4,7 +4,7 @@ build:
 
 test:
   trivy:
-    image: aquasec/trivy:latest
+    image: ghcr.io/aquasecurity/trivy:0.69.3@sha256:7228e304ae0f610a1fad937baa463598cadac0c2ac4027cc68f3a8b997115689
     context: trivy
     caches:
       - /root/.cache/trivy
