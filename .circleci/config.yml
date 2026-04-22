@@ -1,19 +1,16 @@
 version: 2.1
 alias:
-  - &okteto-login |
-    curl https://get.okteto.com -sSfL | sh
-    mkdir -p $HOME/.okteto
-    touch $HOME/.okteto/.noanalytics
-    okteto context use ${OKTETO_URL} --token ${OKTETO_TOKEN}
   - &docker-login echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
 
 jobs:
   build:
     docker:
-      - image: cimg/base:current
+      - image: okteto/golang-ci:2.9.2
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run: *okteto-login
       - run: 
           name: Build Rootful Image
           command: make build-rootful
@@ -22,10 +19,12 @@ jobs:
           command: make build-rootless
   release:
     docker:
-      - image: cimg/base:current
+      - image: okteto/golang-ci:2.9.2
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run: *okteto-login
       - run: *docker-login
       - run:
           name: Build and Push Rootful Image
@@ -39,13 +38,11 @@ workflows:
   build:
     jobs:
       - build:
-          context: Product-okteto-dev
+          context: dockerhub
   release:
     jobs:
       - release:
-          context:
-            - dockerhub
-            - Product-okteto-dev
+          context: dockerhub
           filters:
             branches:
               ignore: /.*/
