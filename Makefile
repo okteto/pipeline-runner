@@ -13,7 +13,7 @@ build-rootless:
 push: push-rootful
 
 push-rootful:
-	@depot build -t okteto/pipeline-runner:${CIRCLE_TAG} --platform linux/amd64,linux/arm64 -f Dockerfile --target rootful .
+	@depot build --push -t okteto/pipeline-runner:${CIRCLE_TAG} --platform linux/amd64,linux/arm64 -f Dockerfile --target rootful .
 
 push-rootless:
-	@depot build -t okteto/pipeline-runner:${CIRCLE_TAG}-rootless --platform linux/amd64,linux/arm64 -f Dockerfile --target rootless .
+	@depot build --push -t okteto/pipeline-runner:${CIRCLE_TAG}-rootless --platform linux/amd64,linux/arm64 -f Dockerfile --target rootless .
