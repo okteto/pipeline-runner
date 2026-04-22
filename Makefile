@@ -4,22 +4,16 @@ CIRCLE_TAG ?= dev
 build: build-rootful
 
 build-rootful:
-	okteto build --platform linux/amd64,linux/arm64 -f Dockerfile --target rootful .
+	@depot build --platform linux/amd64,linux/arm64 -f Dockerfile --target rootful .
 
 build-rootless:
-	okteto build --platform linux/amd64,linux/arm64 -f Dockerfile --target rootless .
+	@depot build --platform linux/amd64,linux/arm64 -f Dockerfile --target rootless .
 
 # keep 'push' makefile step rootful for backwards compatibility
 push: push-rootful
 
 push-rootful:
-	okteto build -t okteto/pipeline-runner:${CIRCLE_TAG} --platform linux/amd64,linux/arm64 -f Dockerfile --target rootful .
+	@depot build --push -t okteto/pipeline-runner:${CIRCLE_TAG} --platform linux/amd64,linux/arm64 -f Dockerfile --target rootful .
 
 push-rootless:
-	okteto build -t okteto/pipeline-runner:${CIRCLE_TAG}-rootless --platform linux/amd64,linux/arm64 -f Dockerfile --target rootless .
-
-push-dev-rootful:
-	okteto build -t okteto.dev/pipeline-runner:dev --platform linux/amd64,linux/arm64 -f Dockerfile --target rootful .
-
-push-dev-rootless:
-	okteto build -t okteto.dev/pipeline-runner:dev-rootless --platform linux/amd64,linux/arm64 -f Dockerfile --target rootless .
+	@depot build --push -t okteto/pipeline-runner:${CIRCLE_TAG}-rootless --platform linux/amd64,linux/arm64 -f Dockerfile --target rootless .
