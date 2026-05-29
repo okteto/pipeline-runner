@@ -18,7 +18,10 @@ RUN apt clean && apt update && \
         jq \
         netcat-traditional && \
     rm -f /etc/ssh/ssh_host_* && \
-    apt -y upgrade gnupg dirmngr gpg gpg-agent gpgconf gpgsm gnupg-l10n openssl libssl3t64 openssl-provider-legacy libc-bin libc6 && \
+    apt -y upgrade gnupg dirmngr gpg gpg-agent gpgconf gpgsm gnupg-l10n openssl libssl3t64 openssl-provider-legacy libc-bin libc6 \
+        libgnutls30t64 jq libjq1 libcap2 \
+        libgssapi-krb5-2 libk5crypto3 libkrb5-3 libkrb5support0 \
+        libnghttp2-14 openssh-client openssh-server openssh-sftp-server sudo && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*
 
