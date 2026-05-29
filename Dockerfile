@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:experimental
-FROM debian:trixie-slim@sha256:b6e2a152f22a40ff69d92cb397223c906017e1391a73c952b588e51af8883bf8 AS base
+FROM debian:13.5-slim@sha256:b6e2a152f22a40ff69d92cb397223c906017e1391a73c952b588e51af8883bf8 AS base
 
 RUN apt clean && apt update && \
     apt -y upgrade && \
@@ -18,7 +18,6 @@ RUN apt clean && apt update && \
         jq \
         netcat-traditional && \
     rm -f /etc/ssh/ssh_host_* && \
-    apt -y upgrade openssl-provider-legacy libc-bin libc6 libcap2 && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*
 
