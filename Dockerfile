@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:experimental
-FROM debian:trixie-slim AS base
+FROM debian:trixie-slim@sha256:b6e2a152f22a40ff69d92cb397223c906017e1391a73c952b588e51af8883bf8 AS base
 
 RUN apt clean && apt update && \
     apt -y upgrade && \
