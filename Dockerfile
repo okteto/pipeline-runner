@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:experimental
-FROM debian:13.5-slim@sha256:a617c1cdde36a7e0194b2f07dff669e1753c03c3205356b94f9f350b0f9a57d1 AS base
+FROM debian:13.5-slim@sha256:28de0877c2189802884ccd20f15ee41c203573bd87bb6b883f5f46362d24c5c2 AS base
 
 RUN apt clean && apt update && \
     apt -y upgrade && \
