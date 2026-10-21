@@ -5,7 +5,7 @@ alias:
 jobs:
   build:
     docker:
-      - image: okteto/golang-ci:2.10.1@sha256:3279c526fdce2272b60979dff352e1e672bf2f8d3035797d96365c619f9c87ab
+      - image: okteto/golang-ci:2.10.5@sha256:ca0da30ad764a002f7b34e66bbad8329d0b4b3931f92ff621faba71581fb0e01
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
@@ -19,7 +19,7 @@ jobs:
           command: make build-rootless
   release:
     docker:
-      - image: okteto/golang-ci:2.10.1@sha256:3279c526fdce2272b60979dff352e1e672bf2f8d3035797d96365c619f9c87ab
+      - image: okteto/golang-ci:2.10.5@sha256:ca0da30ad764a002f7b34e66bbad8329d0b4b3931f92ff621faba71581fb0e01
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
