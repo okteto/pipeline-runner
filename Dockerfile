@@ -1,12 +1,13 @@
 # syntax = docker/dockerfile:experimental
 FROM debian:13.7-slim@sha256:a99cfc517144bc59b1978475ec53b46ecabec7e43635402ee5b77cc54cd1b20a AS base
 
+# ca-certificates is pinned to the DSA-6572-1 fix, which distrusts the roots behind the compromised eMudhra intermediates
 RUN apt clean && apt update && \
     apt -y upgrade && \
     apt -y install --no-install-recommends \
         sudo \
         apt-transport-https \
-        ca-certificates \
+        ca-certificates=20250419+deb13u1 \
         gnupg \
         bash \
         make \
